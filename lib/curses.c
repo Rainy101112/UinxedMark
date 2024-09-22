@@ -75,11 +75,11 @@ int curses_drawInput(int handle, char *title){
 	printk_color(0xffffff,						"                  |                                                                        |\n");
 	printk_color(0xffffff,						"                  |                                                                        |\n");
 	printk_color(0xffffff,						"                  |                                                                        |\n");
+	printk_color(0xffffff,						"                  |                                                                        |\n");
 	printk_color(0xffffff,						"                  |           Choose a mode.                                               |\n");
 	printk_color(0xffffff,						"                  |           1. Start Uinxed-Mark.                                        |\n");
-	printk_color(0xffffff,						"                  |           2. Start Uinxed-Mark with FPU.                               |\n");
-	printk_color(0xffffff,						"                  |           3. About.                                                    |\n");
-	printk_color(0xffffff,						"                  |           4. Reboot. (Not ACPI)                                        |\n");
+	printk_color(0xffffff,						"                  |           2. About.                                                    |\n");
+	printk_color(0xffffff,						"                  |           3. Reboot. (Not ACPI)                                        |\n");
 	printk_color(0xffffff,						"                  |                                                                        |\n");
 	printk_color(0xffffff,						"                  |                                                                        |\n");
 	printk_color(0xffffff,						"                  |                                                                        |\n");
@@ -101,16 +101,12 @@ int curses_drawInput(int handle, char *title){
 			return 1;
 		} else
 		if (varModeChoose == '2'){
-			printk_color(0xffffff,				"                  STATUS: Mode 2 is unavailable                                             \r");
-			continue;
+			printk_color(0xffffff,				"                  STATUS: User typed in 2                                                   \r");
+			return 2;
 		} else
 		if (varModeChoose == '3'){
 			printk_color(0xffffff,				"                  STATUS: User typed in 3                                                   \r");
 			return 3;
-		} else
-		if (varModeChoose == '4'){
-			printk_color(0xffffff,				"                  STATUS: User typed in 4                                                   \r");
-			return 4;
 		} else{
 			printk_color(0xffffff,				"                  STATUS: Invaild mode number                                               \r");
 			continue;

@@ -6,7 +6,7 @@
 #include "debug.h"
 #include "printk.h"
 
-#define UXMARK_VERSION		"v0.0.1.0031"
+#define UXMARK_VERSION		"v0.0.1.0035"
 
 void start_uxmark(int modeNumber);
 

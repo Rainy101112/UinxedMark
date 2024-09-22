@@ -39,8 +39,8 @@ int kthread_UxMark(void *arg)
 	int UxMarkMode = curses_drawInput(0, "Hello");
 	
 	if (UxMarkMode == 1) start_uxmark(UxMarkMode);
+	if (UxMarkMode == 2) start_uxmark(UxMarkMode);
 	if (UxMarkMode == 3) start_uxmark(UxMarkMode);
-	if (UxMarkMode == 4) start_uxmark(UxMarkMode);
 	while (1);
 }
 

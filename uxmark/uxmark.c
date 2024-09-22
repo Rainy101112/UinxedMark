@@ -6,6 +6,7 @@
 #include "vbe.h"
 #include "cpu.h"
 #include "debug.h"
+#include "memory.h"
 
 static char *UxMarkLogo = 
 			"###      *$$$$$$\n"
@@ -132,25 +133,39 @@ static void marking(){
 	uxmarkPrintLogo();
 	printk("\n");
 	print_cpu_info();
+
 	waitSec(3, true);
+
 	extern void do_qsort(void);
 	extern void pi();
 	//do_qsort();
 	//panic("TESTING");
 	pi();
 	doFor();
+
+	uint32_t *keybuf = (uint32_t *) kmalloc(128);
+	uint32_t *dkey_buf = (uint32_t *) kmalloc(128);
+	fifo_init(&keyfifo, 32, keybuf);
+	fifo_init(&decoded_key, 32, dkey_buf);
+
+	printk_color(0x0000ff, "Press any key to reboot your computer.");
+	while (fifo_status(&decoded_key) == 0);
+
+	printk_color(0xffff00, "\n[ ** ] The system is going to \"Reboot\" NOW!");
+	waitSec(3, false);
+	outb(0x64, 0xfe);
 }
 
 void start_uxmark(int modeNumber){
 	if (modeNumber == 1){
 		marking();
 	} else
-	if (modeNumber == 3){
+	if (modeNumber == 2){
 		aboutUxMark();
 		waitSec(5, true);
 		marking();
 	}
-	if (modeNumber == 4){
+	if (modeNumber == 3){
 		printk_color(0xffff00, "                  [ ** ] The system is going to \"Reboot\" NOW!");
 		waitSec(3, false);
 		outb(0x64, 0xfe);
